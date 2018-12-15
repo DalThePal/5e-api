@@ -36,11 +36,15 @@ module.exports = {
     },
 
     getMonsterById: (req, res) => {
-        let data = monsterData[req.params.id - 1]
-        if (data) {
-            res.status(200).send(data);
+        let data = monsterData.filter(item => {
+            return (
+                item.id == req.params.id
+            );
+        });
+        if (data[0]) {
+            res.status(200).send(data[0]);
         } else {
-            res.status(404).send(null);
+            res.status(404).send({});
         }
     }
 }

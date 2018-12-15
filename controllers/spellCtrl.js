@@ -47,11 +47,15 @@ module.exports = {
     },
 
     getSpellById: (req, res) => {
-        let data = spellData[req.params.id - 1];
-        if (data) {
-            res.status(200).send(data);
+        let data = spellData.filter(item => {
+            return (
+                item.id == req.params.id
+            );
+        });
+        if (data[0]) {
+            res.status(200).send(data[0]);
         } else {
-            res.status(404).send(null);
+            res.status(404).send({});
         }
     }
 }
