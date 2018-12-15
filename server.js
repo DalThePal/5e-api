@@ -1,4 +1,3 @@
-const express = require('express');
 const monsterCtrl = require('./controllers/monsterCtrl');
 const spellCtrl = require('./controllers/spellCtrl');
 const equipmentCtrl = require('./controllers/equipmentCtrl');
@@ -6,9 +5,11 @@ const classCtrl = require('./controllers/classCtrl');
 const raceCtrl = require('./controllers/raceCtrl');
 const subraceCtrl = require('./controllers/subraceCtrl');
 const subclassCtrl = require('./controllers/subclassCtrl');
+const languageCtrl = require('./controllers/languageCtrl');
+
+const express = require('express');
 const port = 3000;
 const app = express();
-
 
 app.get('/api/monsters', monsterCtrl.getAllMonsters);
 app.get('/api/monsters/:id', monsterCtrl.getMonsterById);
@@ -30,5 +31,8 @@ app.get('/api/subraces/:id', subraceCtrl.getSubraceById);
 
 app.get('/api/subclasses', subclassCtrl.getAllSubclasses);
 app.get('/api/subclasses/:id', subclassCtrl.getSubclassById);
+
+app.get('/api/languages', languageCtrl.getAllLanguages);
+app.get('/api/languages/:id', languageCtrl.getLanguageById);
 
 app.listen(port, () => console.log(`listening on port: ${port}`));
