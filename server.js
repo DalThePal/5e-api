@@ -6,6 +6,7 @@ const raceCtrl = require('./controllers/raceCtrl');
 const subraceCtrl = require('./controllers/subraceCtrl');
 const subclassCtrl = require('./controllers/subclassCtrl');
 const languageCtrl = require('./controllers/languageCtrl');
+const skillCtrl = require('./controllers/skillCtrl');
 
 const express = require('express');
 const port = 3000;
@@ -34,5 +35,8 @@ app.get('/api/subclasses/:id', subclassCtrl.getSubclassById);
 
 app.get('/api/languages', languageCtrl.getAllLanguages);
 app.get('/api/languages/:id', languageCtrl.getLanguageById);
+
+app.get('/api/skills', skillCtrl.getAllSkills);
+app.get('/api/skills/:id', skillCtrl.getSkillById);
 
 app.listen(port, () => console.log(`listening on port: ${port}`));
