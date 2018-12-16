@@ -9,7 +9,7 @@ const languageCtrl = require('./controllers/languageCtrl');
 const skillCtrl = require('./controllers/skillCtrl');
 
 const express = require('express');
-const port = 3000;
+const port = 3007;
 const app = express();
 
 app.get('/api/monsters', monsterCtrl.getAllMonsters);
