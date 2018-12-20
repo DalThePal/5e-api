@@ -7,7 +7,7 @@ class App extends Component {
         super();
         this.get = this.get.bind(this);
         this.state = {
-            search: 'monsters/2',
+            search: 'monsters/259',
             result: null
         }
     }
@@ -29,8 +29,8 @@ class App extends Component {
                 <header className="App-header">D&D 5th Edition API</header>
                 <div className='content'>
                     <a href='http://www.dnd5eapi.co/' target='_blank'>ORIGINAL API</a>
-                    <p>
-                        using the JSON files from the original API, I created my own using NODE and EXPRESS and added queries for filtering.
+                    <p className='desc'>
+                        Using the JSON files from the original API, I created my own using NODE and EXPRESS and included queries for filtering.
                     </p>
                     <div className='URL'>
                         <div>http://www.5eapi.dallenhoyal.com/api/</div>
@@ -42,6 +42,8 @@ class App extends Component {
                             {this.state.result}
                         </pre>
                     </div>
+                </div>
+                <div className='footer'>
                     <div className='info'>
                         <div className='list'>
                             <p>Monster Queries:</p>
