@@ -9,13 +9,16 @@ const languageCtrl = require('./controllers/languageCtrl');
 const skillCtrl = require('./controllers/skillCtrl');
 const proficiencyCtrl = require('./controllers/proficiencyCtrl');
 
+const cors = require('cors');
 const express = require('express');
 const port = 3007;
 const app = express();
 
+
 var db = require('./firebase');
 
 app.use(express.static(`${__dirname}/../build`));
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.send("Welcome to the api");
