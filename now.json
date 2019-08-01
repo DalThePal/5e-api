@@ -1,0 +1,24 @@
+{
+    "name": "5e-api",
+    "version": 2,
+    "alias": "5e-api.dallenhoyal.com",
+    "routes": [
+        { "src": "/(.*)", "dest": "index.js" }
+    ],
+    "builds": [
+        { "src": "index.js", "use": "@now/node@canary" },
+        { "src": "controllers/monsterCtrl.js", "use": "@now/node" }
+    ],
+    "env": {
+        "TYPE": "@5e-api-type",
+        "PROJECT_ID": "@5e-api-project-id",
+        "PRIVATE_KEY_ID": "@5e-api-private-key-id",
+        "PRIVATE_KEY": "@5e-api-private-key",
+        "CLIENT_EMAIL": "@5e-api-client-email",
+        "CLIENT_ID": "@5e-api-client-id",
+        "AUTH_URI": "@5e-api-auth-uri",
+        "TOKEN_URI": "@5e-api-token-uri",
+        "AUTH_PROVIDER_CERT_URL": "@5e-api-auth-provider-cert-url",
+        "CLIENT_CERT_URL": "@5e-api-client-cert-url"
+    }
+}
