@@ -13,7 +13,13 @@ const express = require('express');
 const port = 3007;
 const app = express();
 
+var db = require('./firebase');
+
 app.use(express.static(`${__dirname}/../build`));
+
+app.get('/', (req, res) => {
+    res.send("Welcome to the api");
+});
 
 app.get('/api/monsters', monsterCtrl.getAllMonsters);
 app.get('/api/monsters/:id', monsterCtrl.getMonsterById);
