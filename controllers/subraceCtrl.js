@@ -1,36 +1,46 @@
-const subraceData = require('../json/subraces.json');
+const db = require('../firebase');
 
 module.exports = {
 
     getAllSubraces: (req, res) => {
-        let data = subraceData;
-        if (req.query.name) {
-            data = data.filter(subrace => {
-                return (
-                    subrace.name.toUpperCase().includes(req.query.name.toUpperCase())
-                );
+        let data = [];
+
+        db.collection('subraces').get()
+            .then(query => {
+                query.forEach(subrace => {
+                    data.push(subrace.data());
+                });
+
+                if (req.query.name) {
+                    data = data.filter(subrace => {
+                        return (
+                            subrace.name.toUpperCase().includes(req.query.name.toUpperCase())
+                        );
+                    });
+                }
+                if (req.query.race) {
+                    data = data.filter(subrace => {
+                        return (
+                            subrace.race.name.toUpperCase().includes(req.query.race.toUpperCase())
+                        );
+                    });
+                }
+
+                res.status(200).send(data);
             });
-        }
-        if (req.query.race) {
-            data = data.filter(subrace => {
-                return (
-                    subrace.race.name.toUpperCase().includes(req.query.race.toUpperCase())
-                );
-            });
-        }
-        res.status(200).send(data);
     },
 
     getSubraceById: (req, res) => {
-        let data = subraceData.filter(item => {
-            return (
-                item.id == req.params.id
-            );
-        });
-        if (data[0]) {
-            res.status(200).send(data[0]);
-        } else {
-            res.status(404).send({});
-        }
+        let subrace = db.collection('subraces').doc(req.params.id);
+        
+        subrace.get()
+            .then(doc => {
+
+                if (doc.exists) {
+                    res.status(200).send(doc.data());
+                } else {
+                    res.status(404).send({});
+                }
+            });
     }
 }
