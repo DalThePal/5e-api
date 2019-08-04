@@ -47,24 +47,16 @@ module.exports = {
 
     getMonsterById: (req, res) => {
 
-        let data = [];
+        let monster = db.collection('monsters').doc(req.params.id);
 
-        db.collection('monsters').get()
-            .then((query) => {
-                query.forEach((monster) => {
+        monster.get()
+            .then(doc => {
 
-                    if (req.params.id == monster.data().id) {
-                        data.push(monster.data());
-                    }
-                });
-
-                if (data[0]) {
-                    res.status(200).send(data[0]);
+                if (doc.exists) {
+                    res.status(200).send(doc.data());
                 } else {
                     res.status(404).send({});
                 }
-
-            });
-        
+            }); 
     }
 }
