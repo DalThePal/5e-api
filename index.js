@@ -54,4 +54,4 @@ app.get('/api/skills/:id', skillCtrl.getSkillById);
 app.get('/api/proficiencies', proficiencyCtrl.getAllProficiencies);
 app.get('/api/proficiencies/:id', proficiencyCtrl.getProficiencyById);
 
-app.listen(port, () => console.log(`listening on port: ${port}`));
+app.listen(port, () => console.log(`listening on: localhost:${port}`));

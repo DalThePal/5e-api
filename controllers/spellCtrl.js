@@ -56,18 +56,13 @@ module.exports = {
     },
 
     getSpellById: (req, res) => {
-        let data = [];
+        let spell = db.collection('spells').doc(req.params.id);
 
-        db.collection('spells').get()
-            .then((query) => {
-                query.forEach((spell) => {
-                    if (req.params.id == spell.data().id) {
-                        data.push(spell.data());
-                    }
-                });
+        spell.get()
+            .then(doc => {
 
-                if (data[0]) {
-                    res.status(200).send(data[0]);
+                if (doc.exists) {
+                    res.status(200).send(doc.data());
                 } else {
                     res.status(404).send({});
                 }
