@@ -7,41 +7,41 @@ module.exports = {
         let data = []
 
         db.collection('monsters').get()
-        .then((query) => {
-            query.forEach((monster) => {
-                data.push(monster.data());
-            });
+            .then((query) => {
+                query.forEach((monster) => {
+                    data.push(monster.data());
+                });
 
-            if (req.query.name) {
-                data = data.filter(monster => {
-                    return (
-                        monster.name.toUpperCase().includes(req.query.name.toUpperCase())
-                    )
-                });
-            }
-            if (req.query.size) {
-                data = data.filter(monster => {
-                    return (
-                        monster.size.toUpperCase().includes(req.query.size.toUpperCase())
-                    )
-                });
-            }
-            if (req.query.type) {
-                data = data.filter(monster => {
-                    return (
-                        monster.type.toUpperCase().includes(req.query.type.toUpperCase())
-                    )
-                });
-            }
-            if (req.query.alignment) {
-                data = data.filter(monster => {
-                    return (
-                        monster.alignment.toUpperCase().includes(req.query.alignment.toUpperCase())
-                    )
-                });
-            }
-            res.status(200).send(data);
-        });
+                if (req.query.name) {
+                    data = data.filter(monster => {
+                        return (
+                            monster.name.toUpperCase().includes(req.query.name.toUpperCase())
+                        )
+                    });
+                }
+                if (req.query.size) {
+                    data = data.filter(monster => {
+                        return (
+                            monster.size.toUpperCase().includes(req.query.size.toUpperCase())
+                        )
+                    });
+                }
+                if (req.query.type) {
+                    data = data.filter(monster => {
+                        return (
+                            monster.type.toUpperCase().includes(req.query.type.toUpperCase())
+                        )
+                    });
+                }
+                if (req.query.alignment) {
+                    data = data.filter(monster => {
+                        return (
+                            monster.alignment.toUpperCase().includes(req.query.alignment.toUpperCase())
+                        )
+                    });
+                }
+                res.status(200).send(data);
+            });
 
     },
 
